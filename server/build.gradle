@@ -2,15 +2,23 @@ plugins {
 	id 'org.springframework.boot' version '2.3.0.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+	id 'org.flywaydb.flyway' version '6.3.3'
+}
+
+flyway {
+	url = 'jdbc:h2:mem:test'
+	user = 'sa'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+//configurationはdependencies内で使えるconfigurationオブジェクトを定義できる
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
 	}
 }
 
@@ -28,6 +36,8 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	/*compile 'org.springframework.boot:spring-boot-starter-security'*/
 }
 
 test {
