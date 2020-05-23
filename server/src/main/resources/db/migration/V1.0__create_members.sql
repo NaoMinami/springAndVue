@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS members;
-
+create sequence itemseq;
 CREATE TABLE `members` (
-	`id` NUMERIC not null AUTO_INCREMENT,
+	`id` NUMBER default itemseq.nextval,
 	`name` VARCHAR2(80),
-	primary key (`number`)
+	primary key (`id`)
 );
