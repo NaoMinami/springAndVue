@@ -6,9 +6,7 @@
     </div>
 </template>
 <script>
-import ky from 'ky';
-
-const api = ky.create({prefixUrl: 'http://localhost:8081'})
+import api from '@/api';
 
 export default {
     name: "Members",

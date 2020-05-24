@@ -1,0 +1,2 @@
+INSERT INTO USERS VALUES ('0001','user','user','ROLE_USER');
+INSERT INTO USERS VALUES ('0002','admin','admin','ROLE_ADMIN');
