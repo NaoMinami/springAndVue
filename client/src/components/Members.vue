@@ -6,7 +6,7 @@
     </div>
 </template>
 <script>
-import api from '@/api';
+import {api} from '@/api';
 
 export default {
     name: "Members",
@@ -18,7 +18,7 @@ export default {
     },
 
     methods: {
-        refresh: async function () {
+        async refresh() {
             const res = await api.get('members').json();
             this.members = res;
         }

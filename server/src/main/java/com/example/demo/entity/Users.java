@@ -1,14 +1,13 @@
 package com.example.demo.entity;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Data
-@Entity
-@Table(name = "USERS")
+@org.springframework.data.relational.core.mapping.Table("USERS")
 public class Users {
     @Id
     private String userId;

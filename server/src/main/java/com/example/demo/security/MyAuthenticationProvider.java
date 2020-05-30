@@ -21,7 +21,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
         if (loginReqMsg == null) {
             throw new BadCredentialsException("LoginReqMsg is not found");
         }
-        System.out.println("ProviderFinish");
+        System.out.println("ProviderFinish::"+loginReqMsg);
         return userAppService.login(loginReqMsg); //usernamePassword....Tokenが返る
     }
 

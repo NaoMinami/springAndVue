@@ -15,7 +15,7 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
@@ -27,5 +27,5 @@ public class DemoApplication {
 						.allowedOrigins("http://localhost:8080");
 			}
 		};
-	}
+	}*/
 }

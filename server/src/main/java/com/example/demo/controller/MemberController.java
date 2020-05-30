@@ -17,7 +17,6 @@ import java.util.List;
 public class MemberController {
     private final MemberService memberService;
 
-    @CrossOrigin
     @GetMapping("/members")
     public List<MemberDto> findAll() {
         return MemberDto.ofList( memberService.findAll() );

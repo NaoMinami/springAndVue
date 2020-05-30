@@ -30,15 +30,20 @@ export default {
     methods: {
         async onSubmit() {
             console.log(commonApi);
-            const loginResult = await commonApi
-                .post('login', {
-                    json: {
-                        loginId: this.loginId,
-                        password: this.password,
-                    },
-                })
-                .json();
-            console.log(loginResult);
+            try {
+                const loginResult = await commonApi
+                    .post('login', {
+                        json: {
+                            loginId: this.loginId,
+                            password: this.password,
+                        },
+                    })
+                    .json();
+                console.log(loginResult);
+                this.$router.push("/");
+            } catch (error) {
+                console.log("エラーです:"+error);
+            }
         }
     }
 }

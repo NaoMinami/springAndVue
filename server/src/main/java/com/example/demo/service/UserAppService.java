@@ -13,11 +13,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class UserAppService {
 
@@ -37,8 +39,12 @@ public class UserAppService {
         if (users.getUserGroup().equals(SystemAuthority.ROLE_ADMIN.getAuthority())) {
             authorities.add(SystemAuthority.ROLE_ADMIN);
         }
+        System.out.println(authorities);
         UserDto userDto = UserDto.of(users);
         System.out.println("Servicefinish:"+userDto);
-        return new UsernamePasswordAuthenticationToken(userDto, loginReqMsg.getPassword(), authorities);
+        System.out.println(loginReqMsg.getPassword());
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDto, loginReqMsg.getPassword(), authorities);
+        System.out.println("principal::"+usernamePasswordAuthenticationToken.getPrincipal());
+        return usernamePasswordAuthenticationToken;
     }
 }
