@@ -15,8 +15,9 @@
 </template>
 
 <script>
-import ky from 'ky';
-const commonApi = ky.create({prefixUrl: 'http://localhost:8081'});
+import {commonApi,withApi} from '@/api';
+import sessionInfoRepository from '@/repository/sessionInfoRepositoy';
+
 
 export default {
     name: "Login",
@@ -29,9 +30,12 @@ export default {
     },
     methods: {
         async onSubmit() {
-            console.log(commonApi);
-            try {
-                const loginResult = await commonApi
+        
+
+            await withApi(
+                this,
+                async () => {
+                    const loginResult = await commonApi
                     .post('login', {
                         json: {
                             loginId: this.loginId,
@@ -39,11 +43,11 @@ export default {
                         },
                     })
                     .json();
-                console.log(loginResult);
-                this.$router.push("/");
-            } catch (error) {
-                console.log("エラーです:"+error);
-            }
+                    sessionInfoRepository.saveLoginInfo(loginResult.user);
+                    console.log(loginResult);
+                    this.$router.push("/");
+                }
+            );
         }
     }
 }

@@ -45,6 +45,8 @@ public class UserAppService {
         System.out.println(loginReqMsg.getPassword());
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDto, loginReqMsg.getPassword(), authorities);
         System.out.println("principal::"+usernamePasswordAuthenticationToken.getPrincipal());
+        System.out.println("credential::"+usernamePasswordAuthenticationToken.getCredentials());
+        System.out.println("authori::"+ usernamePasswordAuthenticationToken.getAuthorities());
         return usernamePasswordAuthenticationToken;
     }
 }

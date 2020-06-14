@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .antMatchers("/login").permitAll()
                         .antMatchers("/public/**").permitAll()
                         .antMatchers("/sample/**").permitAll()
-                        //.antMatchers("/app/*").hasRole("ADMIN")
+                        .antMatchers("/**").hasRole("USER")
                         .anyRequest().authenticated()
                 )
                 .addFilter(myUsernamePasswordAuthenticationFilter);
