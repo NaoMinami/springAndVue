@@ -6,9 +6,7 @@
     </div>
 </template>
 <script>
-import ky from 'ky';
-
-const api = ky.create({prefixUrl: 'http://localhost:8081'})
+import {withApi,api} from "@/api";
 
 export default {
     name: "Members",
@@ -20,14 +18,19 @@ export default {
     },
 
     methods: {
-        refresh: async function () {
-            const res = await api.get('members').json();
-            this.members = res;
+        async refresh() {
+            await withApi(
+                this,
+                async () => {
+                    const res = await api.get('members').json();
+                    this.members = res;
+                }
+            )
         }
     },
 
-    mounted: async function () {
-        await this.refresh()
+    mounted() {
+        this.refresh();
     }
 }
 </script>

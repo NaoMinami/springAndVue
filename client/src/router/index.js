@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
 import Members from '../components/Members.vue'
+import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,11 @@ Vue.use(VueRouter)
     path: '/members' ,
     name: 'Members',
     component: Members
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   }
 ]
 
